@@ -5,6 +5,14 @@
 
 	<persistence-unit name="SystemPU">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.system.model.Cidade</class>
+		<class>com.system.model.Estado</class>
+		<class>com.system.model.Grupo</class>
+		<class>com.system.model.Lancamento</class>
+		<class>com.system.model.Pessoa</class>
+		<class>com.system.model.Processo</class>
+		<class>com.system.model.Unidade</class>
+		<class>com.system.model.Usuario</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/system" />

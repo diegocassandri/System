@@ -15,14 +15,16 @@
 		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
 		<param-value>0</param-value>
 	</context-param>
+	
+	<!--<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>  --> 
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
-	</listener>
-	<listener>
-		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
 	<resource-env-ref>
 		<resource-env-ref-name>BeanManager</resource-env-ref-name>
