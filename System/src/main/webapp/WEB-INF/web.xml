@@ -16,9 +16,9 @@
 		<param-value>0</param-value>
 	</context-param>
 	
-	<!--<listener>
+	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-	</listener>  --> 
+	</listener> 
 	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

@@ -31,7 +31,6 @@
 	</build>
 
 	<dependencies>
-
 		<!-- Spring Security (autenticação e autorização) -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -87,8 +86,8 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!--<dependency> <groupId>org.jboss.weld.servlet</groupId> <artifactId>weld-servlet</artifactId> 
-			<version>2.2.10.Final</version> <scope>compile</scope> </dependency>  --> 
+		<dependency> <groupId>org.jboss.weld.servlet</groupId> <artifactId>weld-servlet</artifactId> 
+			<version>2.2.10.Final</version> <scope>compile</scope> </dependency>  
 
 
 		<dependency>

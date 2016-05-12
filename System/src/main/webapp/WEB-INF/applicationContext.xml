@@ -28,6 +28,7 @@
     <http pattern="/Login.xhtml" security="none" />
     <http pattern="/Erro.xhtml" security="none" />
     <http pattern="/teste.xhtml" security="none" />
+    <http pattern="/templates/default/**" security="none" />
     <http pattern="/WEB-INF/templates/**" security="none" />
     <http pattern="/javax.faces.resource/**" security="none" />
     <http pattern="/javax.faces.resource/algaworks/**" security="none" />
@@ -38,10 +39,11 @@
 		<custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 	
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()" />
+		<intercept-url pattern="/index.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/dialogos/**" access="isAuthenticated()" />
 		<intercept-url pattern="/cadastros/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />
-		<intercept-url pattern="/**" access="denyAll" />
+		<intercept-url pattern="/**" access="denyAll" />  
 		
 		<form-login login-page="/Login.xhtml" authentication-failure-url="/Login.xhtml?invalid=true" 
 			default-target-url="/" always-use-default-target="true" />
