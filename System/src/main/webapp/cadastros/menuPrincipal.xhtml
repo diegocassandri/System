@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form>
+		<p:panelMenu backLabel="Voltar" 
+			style="margin-top:10px;margin-left:13px;width:182px">
+			<p:menuitem value="Home  " outcome="/Home" icon="ui-icon-home" />
+			<p:submenu label="Cadastros" expanded="false">
+				<p:menuitem icon="ui-icon-document" value="Estados"
+					outcome="/cadastros/CadastroEstado" />
+				<p:menuitem icon="ui-icon-document" value="Cidades"
+					outcome="/cadastros/CadastroCidade" />
+				<p:separator />
+				<p:menuitem icon="ui-icon-document" value="Usuários"
+					outcome="/cadastros/CadastroUsuario" />
+				<p:menuitem icon="ui-icon-document" value="Grupos"
+					outcome="/cadastros/CadastroGrupoUsuario" />
+				<p:separator />
+				<p:menuitem icon="ui-icon-document" value="Lançamentos"
+					outcome="/cadastros/CadastroLancamento" />
+				<p:menuitem icon="ui-icon-document" value="Consulta Lançamentos"
+					outcome="/cadastros/ConsultaLancamentos" />
+				<p:separator />
+				<p:menuitem icon="ui-icon-document" value="Processos"
+					outcome="/cadastros/CadastroProcesso" />
+				<p:menuitem icon="ui-icon-document" value="Unidades"
+					outcome="/cadastros/CadastroUnidade" />
+			</p:submenu>
+			<p:submenu label="Calculos" expanded="false">
+				<p:menuitem icon="ui-icon-document" value="Salário" outcome="/cadastros/CalcularSalario" />
+				
+			</p:submenu>
+			<p:submenu label="Relatórios" expanded="false">
+				<p:menuitem icon="ui-icon-document" value="Orçamentos" />
+			</p:submenu>
+			<p:submenu label="Opções">
+				<p:menuitem value="Alterar Senha "
+					url="/cadastros/AlterarSenha.xhtml" icon="ui-icon-document" />
+				<p:menuitem value="Sair   " url="/j_spring_security_logout"
+					icon="ui-icon-close" />
+			</p:submenu>
+
+		</p:panelMenu>
+	</h:form>
+</ui:composition>

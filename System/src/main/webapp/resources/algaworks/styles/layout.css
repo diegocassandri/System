@@ -1,0 +1,122 @@
+/* TOPBAR */
+.aw-topbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	min-height: 40px;
+	z-index: 9999;
+	
+	background-color: #1e94d2;
+	
+	/*background-color: #1e94d2;*/
+}
+
+.aw-topbar > img {
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+/* SIDEBAR */
+.aw-sidebar {
+	position: fixed;
+	top: 50px;
+	bottom: 0;
+	left: 0;
+	width: 210px;
+	margin-left: -211px;
+	z-index: 9998;
+	transition: margin-left 0.5s;
+	overflow-y: auto;
+	
+	background-color: #f6f6f6;
+	border-right: 1px solid #eaeaea;
+}
+
+.aw-sidebar.is-toggled {
+	margin-left: 0px;
+}
+
+@media (min-width: 960px) {
+	.aw-sidebar {
+		margin-left: 0px;
+	}
+	
+	.aw-sidebar.is-toggled {
+		margin-left: -211px;
+	}
+}
+
+/* CONTENT */
+.aw-content {
+	padding: 0 15px;
+	margin-top: 50px;
+	transition: margin-left 0.5s;
+}
+
+@media (min-width: 960px) {
+	.aw-content {
+		margin-left: 210px;
+	}
+	
+	.aw-content.is-toggled {
+		margin-left: 0;
+	}
+}
+
+.ui-widget {
+	font-size: 12px !important;
+}
+
+.ui-layout-north {
+	z-index: 3 !important;
+	overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+
+.ui-menu, .ui-menubar, .ui-menu-child {
+	min-width: 180px !important;
+}
+
+.site_title i {
+  border: 1px solid #EAEAEA;
+  padding: 5px 6px;
+  border-radius: 50%;
+}
+
+.site_title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 400;
+  font-size: 34px;
+  width: 100%;
+  color: #ECF0F1 !important;
+  margin-left: 10px !important;
+  line-height: 50px;
+
+}
+
+.site_title:hover, .site_title:focus {
+  text-decoration: none
+}
+
+/* Menu sistema inicio */
+.menu-sistema {
+    border: 0px !important;
+    border-style: none;
+    padding: 0px !important;
+    background: none !important;
+
+}
+
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+.menu-sistema .ui-icon-triangle-1-s {
+    background: url(#{resource['prodama:seta-para-baixo.png']}) no-repeat;
+}
+/* Menu sistema fim */
