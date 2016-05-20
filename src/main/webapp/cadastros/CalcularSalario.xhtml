@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+
+	<ui:define name="corpo">
+		<h:form id="frm" style="margin-top:10px">
+			<p:panel header="Calcular">
+				<h:form id="frmsenha">
+					<p:messages id="msgs-dialog" />
+
+					<p:defaultCommand target="salvar-button" />
+
+					<h:panelGrid columns="2" id="painel-dialog">
+						<p:outputLabel value="Salário Bruto" for="salario" />
+						<p:inputText id="salario" size="20" maxlength="50"
+							value="#{calculoBean.salario}" />
+						<p:outputLabel value="Comissões" for="comissoes" />
+						<p:inputText id="comissoes" size="20" maxlength="50"
+							value="#{calculoBean.comissoes}" />
+						<p:outputLabel value="Horas Extras" for="he" />
+						<p:inputText id="he" size="20" maxlength="50"
+							value="#{calculoBean.horasExtras}" />
+						<p:outputLabel value="Dias úteis" for="du" />
+						<p:inputText id="du" size="5" maxlength="2"
+							value="#{calculoBean.diasUteis}" /> 
+						<p:outputLabel value="Dias não úteis" for="dnu" />
+						<p:inputText id="dnu" size="5" maxlength="2"
+							value="#{calculoBean.diasNaoUteis}" />
+
+						<p:commandButton value="Salvar" id="salvar-button"
+							action="#{calculoBean.calcular}" process="@form"
+							update="msgs-dialog painel-dialog"  />
+					</h:panelGrid>
+				</h:form>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

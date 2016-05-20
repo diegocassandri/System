@@ -1,0 +1,114 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<f:viewAction action="#{cadastroProcessoBean.consultar}" />
+	</f:metadata>
+
+	<ui:define name="titulo">Cadastro de Processo</ui:define>
+
+	<ui:define name="corpo">
+		<p:panel header="Cadastro de Processos">
+			<h:form id="frmCadastro">
+
+				<p:messages id="msgs" />
+
+				<p:toolbar id="toolbar">
+					<f:facet name="left">
+						<p:commandButton value="Novo" icon="ui-icon-document"
+							action="#{cadastroProcessoBean.prepararNovoCadastro}"
+							process="@this" update="processo-dialog"
+							oncomplete="PF('edicaoProcessoDialog').show()" title="Novo">
+							<p:resetInput target="processo-dialog" />
+						</p:commandButton>
+
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							process="@this" update="processo-dialog"
+							oncomplete="PF('edicaoProcessoDialog').show()"
+							disabled="#{cadastroProcessoBean.processoSelecionado == null}">
+							<p:resetInput target="processo-dialog" />
+
+							<f:setPropertyActionListener
+								value="#{cadastroProcessoBean.processoSelecionado}"
+								target="#{cadastroProcessoBean.processoEdicao}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							process="@this" update="processo-table msgs toolbar"
+							action="#{cadastroProcessoBean.excluir}"
+							disabled="#{cadastroProcessoBean.processoSelecionado == null}">
+
+							<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+								message="Tem certeza que deseja excluir o Processo?" />
+
+						</p:commandButton>
+					</f:facet>
+
+				</p:toolbar>
+
+				<p:dataTable value="#{cadastroProcessoBean.todosProcessos}" var="processo"
+					emptyMessage="Nenhum Processo cadastrado." rows="10" paginator="true"
+					paginatorPosition="bottom" style="margin-top: 10px"
+					id="processo-table"
+					selection="#{cadastroProcessoBean.processoSelecionado}"
+					selectionMode="single" rowKey="#{processo.codigo}"
+					filteredValue="#{cadastroProcessoBean.filtroProcessos}"
+					widgetVar="tabelaProcesso" reflow="true">
+					<f:facet name="header"> Listagem - Processos  </f:facet>
+
+					<p:ajax event="rowSelect" update=":frmCadastro:toolbar" />
+					<p:ajax event="rowUnselect" update=":frmCadastro:toolbar" />
+
+					<p:column headerText="Código" sortBy="#{processo.codigo}"
+						filterBy="#{processo.codigo}" filterMatchMode="contains">
+						<h:outputText value="#{processo.codigo}" />
+					</p:column>
+					<p:column headerText="Descricao" sortBy="#{processo.descricao}"
+						filterBy="#{processo.descricao}" filterMatchMode="contains">
+						<h:outputText value="#{processo.descricao}" />
+					</p:column>
+					
+				</p:dataTable>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+						type="button" icon="ui-icon-check" />
+					<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+						type="button" icon="ui-icon-close" />
+				</p:confirmDialog>
+
+				<p:dialog header="Cadastro Processo" widgetVar="edicaoProcessoDialog"
+					id="processo-dialog" resizable="false" modal="true"
+					closeOnEscape="true">
+
+					<p:messages id="msgs-dialog" />
+
+					<p:defaultCommand target="salvar-button" scope="processo-dialog" />
+
+					<h:panelGrid columns="2" id="painel-dialog">
+						<p:outputLabel value="Código" for="codigo" />
+						<p:inputText id="codigo" size="7" maxlength="10"
+							value="#{cadastroProcessoBean.processoEdicao.codigo}" readonly="true" />
+
+						<p:outputLabel value="Descrição" for="descricao" />
+						<p:inputText id="descricao" size="20" maxlength="50"
+							value="#{cadastroProcessoBean.processoEdicao.descricao}" />
+
+						<p:commandButton value="Salvar" id="salvar-button"
+							action="#{cadastroProcessoBean.salvar}" process="processo-dialog"
+							update="msgs-dialog painel-dialog"
+							oncomplete="if (!args.validationFailed) PF('edicaoProcessoDialog').hide()" />
+					</h:panelGrid>
+				</p:dialog>
+
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>

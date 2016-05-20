@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form>
+		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav side-nav">
+				<li class="active"><a href="/System/Home.xhtml"><i class="fa fa-fw fa-dashboard"></i>
+						Dashboard</a></li>
+				
+				<li><a href="javascript:;" data-toggle="collapse"
+					data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>
+						Cadastros <i class="fa fa-fw fa-caret-down"></i></a>
+					<ul id="demo" class="collapse">
+						<li><a href="/System/cadastros/CadastroEstado.xhtml">Estado</a></li>
+						<li><a href="/System/cadastros/CadastroCidade.xhtml">Cidade</a></li>
+						<li><a href="/System/cadastros/CadastroUsuario.xhtml">Usuário</a></li>
+						<li><a href="/System/cadastros/CadastroGrupoUsuario.xhtml">Grupo de Usuários</a></li>
+					</ul></li>
+				
+						
+				<li><a href="/System/cadastros/CadastroLancamento.xhtml"><i
+						class="fa fa-fw fa-bar-chart-o"></i> Lançamentos</a></li>
+				<li><a href="/System/cadastros/ConsultaLancamentos.xhtml"><i class="fa fa-fw fa-table"></i>
+						Consulta de Lançamentos </a></li>
+				<li><a href="forms.html"><i class="fa fa-fw fa-edit"></i>
+						Forms</a></li>
+				<li><a href="bootstrap-elements.html"><i
+						class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a></li>
+				<li><a href="bootstrap-grid.html"><i
+						class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</h:form>
+</ui:composition>

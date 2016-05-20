@@ -1,0 +1,150 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<f:viewAction action="#{cadastroUnidadeBean.consultar}" />
+	</f:metadata>
+
+	<ui:define name="titulo">Cadastro de Unidade</ui:define>
+
+	<ui:define name="corpo">
+
+		<h:form id="frmCadastro" style="margin-top:10px">
+			<p:panel header="Cadastro de Unidades" style="margin-top:10px">
+				<p:messages id="msgs" />
+
+				<p:toolbar id="toolbar">
+					<f:facet name="left">
+						<p:commandButton value="Novo" icon="ui-icon-document"
+							action="#{cadastroUnidadeBean.prepararNovoCadastro}"
+							process="@this" update="unidade-dialog"
+							oncomplete="PF('edicaoUnidadeDialog').show()" title="Novo">
+							<p:resetInput target="unidade-dialog" />
+						</p:commandButton>
+
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							process="@this" update="unidade-dialog"
+							oncomplete="PF('edicaoUnidadeDialog').show()"
+							disabled="#{cadastroUnidadeBean.unidadeSelecionado == null}">
+							<p:resetInput target="unidade-dialog" />
+
+							<f:setPropertyActionListener
+								value="#{cadastroUnidadeBean.unidadeSelecionado}"
+								target="#{cadastroUnidadeBean.unidadeEdicao}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							process="@this" update="unidade-table msgs toolbar"
+							action="#{cadastroUnidadeBean.excluir}"
+							disabled="#{cadastroUnidadeBean.unidadeSelecionado == null}">
+
+							<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+								message="Tem certeza que deseja excluir a unidade?" />
+
+						</p:commandButton>
+					</f:facet>
+
+				</p:toolbar>
+
+				<p:dataTable value="#{cadastroUnidadeBean.todosUnidades}"
+					var="unidade" emptyMessage="Nenhuma unidade cadastrada." rows="10"
+					rowsPerPageTemplate="5,10,15" paginator="true"
+					paginatorPosition="bottom" style="margin-top: 10px"
+					id="unidade-table"
+					selection="#{cadastroUnidadeBean.unidadeSelecionado}"
+					selectionMode="single" rowKey="#{unidade.codigo}"
+					filteredValue="#{cadastroUnidadeBean.filtroUnidades}"
+					widgetVar="tabelaUnidade" reflow="true">
+
+					<p:ajax event="rowSelect" update=":frmCadastro:toolbar" />
+					<p:ajax event="rowUnselect" update=":frmCadastro:toolbar" />
+
+					<p:column headerText="Código" sortBy="#unidade.codigo}"
+						filterBy="#{unidade.codigo}" filterMatchMode="contains">
+						<h:outputText value="#{unidade.codigo}" />
+					</p:column>
+					<p:column headerText="Descrição" sortBy="#{unidade.descricao}"
+						filterBy="#{unidade.descricao}" filterMatchMode="contains">
+						<h:outputText value="#{unidade.descricao}" />
+					</p:column>
+
+					<p:column headerText="Responsável"
+						filterBy="#{unidade.usuario.nomeCompleto}"
+						sortBy="#{unidade.usuario.usuario}">
+						<h:outputText value="#{unidade.usuario.nomeCompleto}" />
+					</p:column>
+				</p:dataTable>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+						type="button" icon="ui-icon-check" />
+					<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+						type="button" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Cadastro Unidade" widgetVar="edicaoUnidadeDialog"
+			id="unidade-dialog" resizable="false" modal="true" appendTo="@(body)">
+			<h:form id="frmCidade">
+				<p:tabView id="tabView" widgetVar="tab">
+					<p:tab title="Geral">
+						<p:messages id="msgs-dialog" />
+						
+
+						<h:panelGrid columns="2" id="painel-dialog">
+							<p:outputLabel value="Código" for="codigo" />
+							<p:inputText id="codigo" size="7" maxlength="10"
+								value="#{cadastroUnidadeBean.unidadeEdicao.codigo}"
+								readonly="true" />
+
+							<p:outputLabel value="Descrição" for="descricao" />
+							<p:inputText id="descricao" size="20" maxlength="50"
+								value="#{cadastroUnidadeBean.unidadeEdicao.descricao}" />
+
+							<p:outputLabel value="Responsável:" />
+							<p:selectOneMenu filter="true"
+								value="#{cadastroUnidadeBean.unidadeEdicao.usuario}"
+								converter="omnifaces.SelectItemsConverter" required="true"
+								requiredMessage="O Campo Resnponsável é obrigatório"
+								id="usuario">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione um responsável" />
+								<f:selectItems value="#{cadastroUnidadeBean.todosUsuarios}"
+									var="usuario" itemValue="#{usuario}"
+									itemLabel="#{usuario.nomeCompleto}" />
+							</p:selectOneMenu>
+
+							<p:commandButton value="Salvar" id="salvar-button"
+								action="#{cadastroUnidadeBean.salvar}" process="unidade-dialog"
+								update="msgs-dialog painel-dialog"
+								oncomplete="if (!args.validationFailed) PF('edicaoUnidadeDialog').hide()" />
+								
+							
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Processos" id="tab2">
+						<h:panelGrid columns="2" cellpadding="10">
+							<p:selectManyCheckbox id="grid" converter="processoPickConverter"
+								value="#{cadastroUnidadeBean.processosSelecionados}" layout="grid" columns="3">
+								<f:selectItems value="#{cadastroUnidadeBean.todosProcessos}" var="processo"
+									itemLabel="#{processo.descricao}" itemValue="#{processo}" />
+							</p:selectManyCheckbox>
+						</h:panelGrid>
+						<p:commandButton value="Salvar" id="salvar-button2"
+								action="#{cadastroUnidadeBean.salvarProcessos}" process="unidade-dialog"
+								update="msgs-dialog painel-dialog tab2" onclick="tab.select(0)"
+								oncomplete="if (!args.validationFailed) PF('edicaoUnidadeDialog').hide())" />
+					</p:tab>
+				</p:tabView>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

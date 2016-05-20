@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<title>DeimosRa | ERP</title>
+	<!-- Serve para o javaScript FUNCIONAR! -->
+	<h:outputScript>$ = jQuery;</h:outputScript>
+	<h:outputStylesheet library="algaworks" name="styles/layout.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="sb-admin.css" />
+	<h:outputStylesheet library="font" name="css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+
+</h:head>
+
+<h:body>
+
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/System/Home.xhtml">DeimosRa | ERP</a>
+			</div>
+
+			<!-- Top Menu Items -->
+			<ul class="nav navbar-right top-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+						class="caret"></b></a>
+					<ul class="dropdown-menu message-dropdown">
+						<li class="message-preview"><a href="#">
+								<div class="media">
+									<span class="pull-left"> </span>
+									<div class="media-body">
+										<h5 class="media-heading">
+											<strong>#{seguranca.nomeUsuario}!</strong>
+										</h5>
+										<p class="small text-muted">
+											<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
+										</p>
+										<p>Lorem ipsum dolor sit amet, consectetur...</p>
+									</div>
+								</div>
+						</a></li>
+						<li class="message-preview"><a href="#">
+								<div class="media">
+									<span class="pull-left"> </span>
+									<div class="media-body">
+										<h5 class="media-heading">
+											<strong>John Smith</strong>
+										</h5>
+										<p class="small text-muted">
+											<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
+										</p>
+										<p>Lorem ipsum dolor sit amet, consectetur...</p>
+									</div>
+								</div>
+						</a></li>
+						<li class="message-preview"><a href="#">
+								<div class="media">
+									<span class="pull-left"> </span>
+									<div class="media-body">
+										<h5 class="media-heading">
+											<strong>John Smith</strong>
+										</h5>
+										<p class="small text-muted">
+											<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
+										</p>
+										<p>Lorem ipsum dolor sit amet, consectetur...</p>
+									</div>
+								</div>
+						</a></li>
+						<li class="message-footer"><a href="#">Read All New
+								Messages</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"><i class="fa fa-bell"></i> <b
+						class="caret"></b></a>
+					<ul class="dropdown-menu alert-dropdown">
+						<li><a href="#">Alert Name <span
+								class="label label-default">Alert Badge</span></a></li>
+						<li><a href="#">Alert Name <span
+								class="label label-primary">Alert Badge</span></a></li>
+						<li><a href="#">Alert Name <span
+								class="label label-success">Alert Badge</span></a></li>
+						<li><a href="#">Alert Name <span class="label label-info">Alert
+									Badge</span></a></li>
+						<li><a href="#">Alert Name <span
+								class="label label-warning">Alert Badge</span></a></li>
+						<li><a href="#">Alert Name <span
+								class="label label-danger">Alert Badge</span></a></li>
+						<li class="divider"></li>
+						<li><a href="#">View All</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"><i class="fa fa-user"></i>
+						#{seguranca.nomeUsuario}! <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+						</li>
+						<li><a href="#"><i class="fa fa-fw fa-envelope"></i>
+								Inbox</a></li>
+						<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="/System/j_spring_security_logout?faces-redirect=true"><i class="fa fa-fw fa-power-off"></i> Log
+								Out</a></li>
+					</ul></li>
+			</ul>
+
+			<ui:include src="/cadastros/menu.xhtml" />
+		</nav>
+
+		<div>
+			<ui:insert name="corpo">
+
+			</ui:insert>
+		</div>
+
+
+
+	</div>
+
+	<!-- jQuery 
+	<h:outputScript target="body" library="js" name="jquery.js" />-->
+
+	<!-- Bootstrap Core JavaScript -->
+	<h:outputScript target="body" library="js" name="bootstrap.min.js" />
+
+</h:body>
+
+</html>
