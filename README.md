@@ -1,3 +1,3 @@
 # System
 
-Projeto de um ERP utilizando JSF 2, JPA, Hibernate e Maven.
+Projeto de um ERP utilizando JSF 2,Bootstrap, JPA, Hibernate e Maven.
